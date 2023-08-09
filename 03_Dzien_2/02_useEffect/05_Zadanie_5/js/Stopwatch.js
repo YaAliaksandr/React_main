@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
 
 const Stopwatch = () => {
-	const [time, setTime] = useState(0)
-	const [laps, setLaps] = useState([])
-	const [isRunning, setIsRunning] = useState(true)
+	const [time, setTime] = useState(0);
+	const [laps, setLaps] = useState([]);
+	const [isRunning, setIsRunning] = useState(true);
 
 
 	useEffect(() => {
 		let timer = setInterval(() => {
 			if (isRunning) {
-				setTime(prevState => prevState + 1);
+				setTime((prevState) => {
+					return prevState + 1;
+				}
+				);
 			}
-		}, 1000)
+		}, 1000);
 
 		return () => {
 			clearInterval(timer);
@@ -42,9 +45,10 @@ const Stopwatch = () => {
 		<h1>Time: {time}s</h1>
 		<div>
 			<button onClick={handleLap}>Lap</button>
-			<button onClick={handleStop}>Stop</button>
+			{isRunning ? <button onClick={handleStop}>Stop</button> : <button onClick={handleStart}>Start</button>}
+
 			<button onClick={handleRestart}>Restart</button>
-			<button onClick={handleStart}>Start</button>
+
 		</div>
 		<h1>Laps</h1>
 		<ul>
