@@ -1,5 +1,9 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
+import Names from "./Names";
+
+
+const App = () => <Names />
 
 const container = document.getElementById("app");
 const root = createRoot(container);
